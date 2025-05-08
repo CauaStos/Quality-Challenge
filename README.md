@@ -13,7 +13,7 @@ Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/cauastos/quality-challenge.git
-cd Quality-Challenge
+cd quality-challenge
 npm install
 ```
 
