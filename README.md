@@ -1,4 +1,4 @@
-# Quality interview challenge
+# Quality Interview Challenge
 
 This project uses [Playwright](https://playwright.dev) to complete the proposed interview challenge.
 
@@ -9,7 +9,7 @@ This project uses [Playwright](https://playwright.dev) to complete the proposed 
 
 ## Installation
 
-### Clone the repo and install dependencies:
+Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/cauastos/quality-challenge.git
@@ -17,7 +17,7 @@ cd Quality-Challenge
 npm install
 ```
 
-### Running
+Running:
 
 ```bash
 npx playwright test
