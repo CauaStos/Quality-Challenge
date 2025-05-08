@@ -1,28 +1,35 @@
 import { test, expect } from "@playwright/test";
 
-test("Clicar em um botão de compra na Fast Shop", async ({ page }) => {
+test("Clicar em um botão de compra na FastShop", async ({ page }) => {
+  // Navigate to the product page
   await page.goto(
     "https://site.fastshop.com.br/celular-samsung-galaxy-z-fold6-5g-512gb-12gb-ram-tela-7-6----6-3--cam--traseira-50-12-10mp-frontal-10-4mp-42063-43361/p",
   );
 
-  const product = page.getByTestId("fs-product-title").locator("h1"); //h1 is inside product_name div
-  const product_name = await product.innerText(); //Product name from h1
+  // Get the product name from the h1 element inside the product title div
+  const product = page.getByTestId("fs-product-title").locator("h1");
+  const productName = await product.innerText();
 
+  // Locate and click the main "Buy Now" button (not the sticky one)
   await page
     .locator("section")
     .filter({
-      hasNot: page.getByTestId("sticky-price-button"), //Filter out sticky button, could have done .first() but I wanted to test the main buy button
+      hasNot: page.getByTestId("sticky-price-button"), // Avoid sticky button
     })
     .getByTestId("buy-button")
     .filter({
-      hasText: "Comprar Agora", //Differentiate from "Add to cart" button
+      hasText: "Comprar Agora", // Avoid "Add to cart" button
     })
     .click();
 
-  await expect(page).toHaveURL(/\/checkout/); //Matches /checkout
+  // Ensure we're redirected to the checkout page
+  await expect(page).toHaveURL(/\/checkout/); //Matches any URL with /checkout
 
-  const match_product = page.locator(".product-name a").filter({
-    hasText: product_name,
+  // Check that the product name appears in the checkout.
+  const matchProduct = page.locator(".product-name a").filter({
+    hasText: productName,
   });
-  await expect(match_product).toHaveCount(1);
+
+  // Assert that the product appears exactly once in the checkout
+  await expect(matchProduct).toHaveCount(1);
 });
