@@ -14,6 +14,7 @@ Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/cauastos/quality-challenge.git
 cd quality-challenge
+npx playwright install 
 npm install
 ```
 
